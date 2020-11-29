@@ -62,6 +62,7 @@ export default class AddNote extends Component {
         })
     } else { 
       console.log(this.state); return new Error(`Form is invalid`);
+    }
   }
 
   updateName(name) {
