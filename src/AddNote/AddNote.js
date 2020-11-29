@@ -60,10 +60,8 @@ export default class AddNote extends Component {
         .catch(error => {
           console.error({ error })
         })
-    } else {
-      console.log(this.state);
-      return new Error(`Form is invalid`);
-    }
+    } else { 
+      console.log(this.state); return new Error(`Form is invalid`);
   }
 
   updateName(name) {
