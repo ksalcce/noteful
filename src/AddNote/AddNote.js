@@ -130,7 +130,10 @@ export default class AddNote extends Component {
     let hasError = false;
     console.log(fieldValue);
     fieldValue = fieldValue.trim();
-    if(fieldValue.detail === null) {
+    
+    let folder = this.context.folders.find(folder => folder.id === fieldValue);
+    
+    if(folder === undefined) {
       fieldErrors.folderId = 'Please select a folder';
       hasError = true;
     } else {
