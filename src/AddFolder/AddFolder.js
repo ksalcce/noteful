@@ -65,7 +65,7 @@ export default class AddFolder extends Component {
       alert("Please enter a valid input.");
       return;
     }
-    fetch(`${config.API_ENDPOINT}/notes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(newNote),
+    fetch(`${config.API_ENDPOINT}/notes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(folder),
        })
     if (this.state.formValid === true){
       fetch(`${config.API_ENDPOINT}/folders`, {
