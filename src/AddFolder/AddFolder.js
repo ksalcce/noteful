@@ -60,6 +60,13 @@ export default class AddFolder extends Component {
     const folder = {
       name: this.state.name
     }
+     if(this.state.name.trim() === '' ||
+      this.state.content.trim() === ''){
+      alert("Please enter a valid input.");
+      return;
+    }
+    fetch(`${config.API_ENDPOINT}/notes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(newNote),
+       })
     if (this.state.formValid === true){
       fetch(`${config.API_ENDPOINT}/folders`, {
         method: 'POST',
