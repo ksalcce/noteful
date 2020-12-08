@@ -104,7 +104,7 @@ export default class AddFolder extends Component {
               type='text' 
               id='folder-name-input' 
               name='folder-name' 
-              defaultValue='Folder' 
+             placeholder='Folder' 
               onChange={e => this.updateName(e.target.value)} 
               aria-label='Folder Name Input'
               aria-required='true'
