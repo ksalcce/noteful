@@ -183,7 +183,7 @@ export default class AddNote extends Component {
             <textarea 
               id='note-content-input' 
               name='note-content' 
-              defaultValue='Note Content' 
+             placeholder='Folder'
               onChange={e => this.updateContent(e.target.value)} 
               aria-label='Note Content Input'
               aria-required='true'
