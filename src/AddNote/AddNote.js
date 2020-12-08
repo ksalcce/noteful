@@ -40,6 +40,12 @@ export default class AddNote extends Component {
       folderId: this.state.folderId,
       modified: new Date(),
     }
+    if(this.state.content.trim() === ''''){
+      alert("Please enter a valid input.");
+    } else {
+      fetch(`${config.API_ENDPOINT}/notes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(newNote),
+       })
+      
     if (this.state.formValid === true){
       fetch(`${config.API_ENDPOINT}/notes`, {
         method: 'POST',
