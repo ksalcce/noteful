@@ -11,8 +11,8 @@ export default class AddNote extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'Name',
-      content: 'Content',
+      name: '',
+      content: '',
       folderId: '',
       nameValid: true,
       contentValid: true,
@@ -29,7 +29,7 @@ export default class AddNote extends Component {
     },
   }
   static contextType = ApiContext;
-  
+
 
   handleSubmit = e => {
     e.preventDefault()
@@ -40,12 +40,14 @@ export default class AddNote extends Component {
       folderId: this.state.folderId,
       modified: new Date(),
     }
-    if(this.state.content.trim() === ''''){
+    if(this.state.name.trim() === '' ||
+      this.state.content.trim() === ''){
       alert("Please enter a valid input.");
-    } else {
-      fetch(`${config.API_ENDPOINT}/notes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(newNote),
+      return;
+    }
+    fetch(`${config.API_ENDPOINT}/notes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(newNote),
        })
-      
+
     if (this.state.formValid === true){
       fetch(`${config.API_ENDPOINT}/notes`, {
         method: 'POST',
@@ -66,7 +68,7 @@ export default class AddNote extends Component {
         .catch(error => {
           console.error({ error })
         })
-    } else { 
+    } else {
       console.log(this.state); return new Error(`Form is invalid`);
     }
   }
@@ -136,9 +138,9 @@ export default class AddNote extends Component {
     let hasError = false;
     console.log(fieldValue);
     fieldValue = fieldValue.trim();
-    
+
     let folder = this.context.folders.find(folder => folder.id === fieldValue);
-    
+
     if(folder === undefined) {
       fieldErrors.folderId = 'Please select a folder';
       hasError = true;
@@ -171,30 +173,30 @@ export default class AddNote extends Component {
             <label htmlFor='note-name-input'>
               Name
             </label>
-            <input 
+            <input
               type='text'
-              id='note-name-input' 
-              name='note-name' 
+              id='note-name-input'
+              name='note-name'
               placeholder='Please enter a folder name'
-              onChange={e => this.updateName(e.target.value)} 
+              onChange={e => this.updateName(e.target.value)}
               aria-label='Note Name Input'
               aria-required='true'
             />
-            <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>  
+            <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>
           </div>
           <div className='field'>
             <label htmlFor='note-content-input'>
               Content
             </label>
-            <textarea 
-              id='note-content-input' 
-              name='note-content' 
+            <textarea
+              id='note-content-input'
+              name='note-content'
              placeholder='Please enter a folder name'
-              onChange={e => this.updateContent(e.target.value)} 
+              onChange={e => this.updateContent(e.target.value)}
               aria-label='Note Content Input'
               aria-required='true'
             />
-            <ValidationError hasError={!this.state.contentValid} message={this.state.validationMessages.content}/>  
+            <ValidationError hasError={!this.state.contentValid} message={this.state.validationMessages.content}/>
           </div>
           <div className='field'>
             <label htmlFor='note-folder-select'>
@@ -208,7 +210,7 @@ export default class AddNote extends Component {
                 </option>
               )}
             </select>
-            <ValidationError hasError={!this.state.folderIdValid} message={this.state.validationMessages.folderId}/>  
+            <ValidationError hasError={!this.state.folderIdValid} message={this.state.validationMessages.folderId}/>
           </div>
           <div className='buttons'>
             <button type="submit" className="addNote__button" disabled={!this.state.formValid}>
