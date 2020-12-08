@@ -169,7 +169,7 @@ export default class AddNote extends Component {
               type='text'
               id='note-name-input' 
               name='note-name' 
-              defaultValue='name' 
+              placeholder='Folder'
               onChange={e => this.updateName(e.target.value)} 
               aria-label='Note Name Input'
               aria-required='true'
