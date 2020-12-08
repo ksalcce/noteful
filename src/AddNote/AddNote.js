@@ -169,7 +169,7 @@ export default class AddNote extends Component {
               type='text'
               id='note-name-input' 
               name='note-name' 
-              placeholder='Folder'
+              placeholder='Please enter a folder name'
               onChange={e => this.updateName(e.target.value)} 
               aria-label='Note Name Input'
               aria-required='true'
@@ -183,7 +183,7 @@ export default class AddNote extends Component {
             <textarea 
               id='note-content-input' 
               name='note-content' 
-             placeholder='Folder'
+             placeholder='Please enter a folder name'
               onChange={e => this.updateContent(e.target.value)} 
               aria-label='Note Content Input'
               aria-required='true'
