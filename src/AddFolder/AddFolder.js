@@ -21,7 +21,7 @@ export default class AddFolder extends Component {
   static defaultProps = {
     history: {
       push: () => { }
-    },
+    }, 
   }
   static contextType = ApiContext;
 
@@ -38,14 +38,10 @@ export default class AddFolder extends Component {
       fieldErrors.name = 'Name is required';
       hasError = true;
     } else {
-      if(/[^a-zA-Z]/.test(fieldValue)){
-        fieldErrors.name = 'Folder name must be letters only. No Spaces.';
-        hasError = true;
-      } else {
         fieldErrors.name = '';
         hasError = false;
       }
-    }
+    
 
     this.setState({
       validationMessages: fieldErrors,
@@ -60,8 +56,7 @@ export default class AddFolder extends Component {
     const folder = {
       name: this.state.name
     }
-     if(this.state.name.trim() === '' ||
-      this.state.content.trim() === ''){
+     if(this.state.name.trim() === ''){
       alert("Please enter a valid input.");
       return;
     }
