@@ -35,9 +35,6 @@ export default class AddNote extends Component {
     e.preventDefault()
     console.log(this.state)
     const newNote = {
-      name: this.state.name,
-      content: this.state.content,
-      folderId: this.state.folderId,
       modified: new Date(),
     }
     if(this.state.name.trim() === '' ||
@@ -63,8 +60,14 @@ export default class AddNote extends Component {
         })
         .then(note => {
           this.context.addNote(note)
+          if(note.folderId){
           this.props.history.push(`/folder/${note.folderId}`)
-        })
+        }
+        
+        this.props.history.push(`/note/${note.id}`)
+        
+      }) 
+        
         .catch(error => {
           console.error({ error })
         })
